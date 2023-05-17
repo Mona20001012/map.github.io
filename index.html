@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="shortcut icon" type="image/png" href="/icon2.png" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+  <script defer src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+  <script defer src="script.js"></script>
+  <title>Mapty = Map your workouts</title>
+</head>
+<body>
+  <div class="sidebar">
+    <button class="reset_btn">Reset Map</button>
+    <img src="logo.png" alt="Logo" class="logo" />
+
+    <ul class="workouts">
+      <form class="form hidden">
+        <div class="form__row">
+          <label class="form__label">Type</label>
+          <select class="form__input form__input--type">
+            <option value="running">Running</option>
+            <option value="cycling">Cycling</option>
+          </select>
+        </div>
+        <div class="form__row">
+          <label class="form__label">Distance</label>
+          <input class="form__input form__input--distance" placeholder="km" />
+        </div>
+        <div class="form__row">
+          <label class="form__label">Duration</label>
+          <input class="form__input form__input--duration" placeholder="min" />
+        </div>
+        <div class="form__row">
+          <label class="form__label">Cadence</label>
+          <input class="form__input form__input--cadence" placeholder="step/min" />
+        </div>
+        <div class="form__row form__row--hidden">
+          <label class="form__label">Elev Gain</label>
+          <input class="form__input form__input--elevation" placeholder="meters" />
+        </div>
+        <button class="form__btn">OK</button>
+      </form>
+    </ul>
+
+    <p class="copyright">
+      &copy; Copyright by Mapty
+
+    </p>
+  </div>
+  <div id="map" class="leaflet-container leaflet-touch leaflet-retina leaflet-fade-anim leaflet-grab l
+    eaflet-touch-drag leaflet-touch-zoom" tabindex="0" style="position: relative; outline: none;">
+    <div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(-20px, -188px, 0px);">
+      <div class="leaflet-pane leaflet-tile-pane">
+        <div class="leaflet-layer " style="z-index: 1; opacity: 1;">
+          <div class="leaflet-tile-container leaflet-zoom-animated"
+            style="z-index: 17; transform: translate3d(247px, 154px, 0px) scale(0.5);"></div>
+          <div class="leaflet-tile-container leaflet-zoom-animated"
+            style="z-index: 18; transform: translate3d(247px, 190px, 0px) scale(1);">
+            <img alt="" role="presentation" src="https://c.tile.openstreetmap.fr/hot/12/3024/1811.png"
+              class="leaflet-tile leaflet-tile-loaded"
+              style="width: 256px; height: 256px; transform: translate3d(120px, -125px, 0px); opacity: 1;">
+            <img alt="" role="presentation" src="https://a.tile.openstreetmap.fr/hot/12/3024/1812.png"
+              class="leaflet-tile leaflet-tile-loaded"
+              style="width: 256px; height: 256px; transform: translate3d(120px, 131px, 0px); opacity: 1;">
+            <img alt="" role="presentation" src="https://b.tile.openstreetmap.fr/hot/12/3023/1811.png"
+              class="leaflet-tile leaflet-tile-loaded"
+              style="width: 256px; height: 256px; transform: translate3d(-136px, -125px, 0px); opacity: 1;">
+            <img alt="" role="presentation" src="https://a.tile.openstreetmap.fr/hot/12/3025/1811.png"
+              class="leaflet-tile leaflet-tile-loaded"
+              style="width: 256px; height: 256px; transform: translate3d(376px, -125px, 0px); opacity: 1;">
+            <img alt="" role="presentation" src="https://c.tile.openstreetmap.fr/hot/12/3023/1812.png"
+              class="leaflet-tile leaflet-tile-loaded"
+              style="width: 256px; height: 256px; transform: translate3d(-136px, 131px, 0px); opacity: 1;">
+            <img alt="" role="presentation" src="https://b.tile.openstreetmap.fr/hot/12/3025/1812.png"
+              class="leaflet-tile leaflet-tile-loaded"
+              style="width: 256px; height: 256px; transform: translate3d(376px, 131px, 0px); opacity: 1;">
+            <img alt="" role="presentation" src="https://b.tile.openstreetmap.fr/hot/12/3024/1810.png"
+              class="leaflet-tile leaflet-tile-loaded"
+              style="width: 256px; height: 256px; transform: translate3d(120px, -381px, 0px); opacity: 1;">
+            <img alt="" role="presentation" src="https://b.tile.openstreetmap.fr/hot/12/3024/1813.png"
+              class="leaflet-tile leaflet-tile-loaded"
+              style="width: 256px; height: 256px; transform: translate3d(120px, 387px, 0px); opacity: 1;">
+            <img alt="" role="presentation" src="https://a.tile.openstreetmap.fr/hot/12/3023/1810.png"
+              class="leaflet-tile leaflet-tile-loaded"
+              style="width: 256px; height: 256px; transform: translate3d(-136px, -381px, 0px); opacity: 1;">
+            <img alt="" role="presentation" src="https://c.tile.openstreetmap.fr/hot/12/3025/1810.png"
+              class="leaflet-tile leaflet-tile-loaded"
+              style="width: 256px; height: 256px; transform: translate3d(376px, -381px, 0px); opacity: 1;">
+            <img alt="" role="presentation" src="https://a.tile.openstreetmap.fr/hot/12/3023/1813.png"
+              class="leaflet-tile leaflet-tile-loaded"
+              style="width: 256px; height: 256px; transform: translate3d(-136px, 387px, 0px); opacity: 1;">
+            <img alt="" role="presentation" src="https://c.tile.openstreetmap.fr/hot/12/3025/1813.png"
+              class="leaflet-tile leaflet-tile-loaded"
+              style="width: 256px; height: 256px; transform: translate3d(376px, 387px, 0px); opacity: 1;">
+            <img alt="" role="presentation" src="https://a.tile.openstreetmap.fr/hot/12/3022/1811.png"
+              class="leaflet-tile leaflet-tile-loaded"
+              style="width: 256px; height: 256px; transform: translate3d(-392px, -125px, 0px); opacity: 1;">
+            <img alt="" role="presentation" src="https://b.tile.openstreetmap.fr/hot/12/3026/1811.png"
+              class="leaflet-tile leaflet-tile-loaded"
+              style="width: 256px; height: 256px; transform: translate3d(632px, -125px, 0px); opacity: 1;">
+            <img alt="" role="presentation" src="https://b.tile.openstreetmap.fr/hot/12/3022/1812.png"
+              class="leaflet-tile leaflet-tile-loaded"
+              style="width: 256px; height: 256px; transform: translate3d(-392px, 131px, 0px); opacity: 1;">
+            <img alt="" role="presentation" src="https://c.tile.openstreetmap.fr/hot/12/3026/1812.png"
+              class="leaflet-tile leaflet-tile-loaded"
+              style="width: 256px; height: 256px; transform: translate3d(632px, 131px, 0px); opacity: 1;">
+            <img alt="" role="presentation" src="https://c.tile.openstreetmap.fr/hot/12/3022/1810.png"
+              class="leaflet-tile leaflet-tile-loaded"
+              style="width: 256px; height: 256px; transform: translate3d(-392px, -381px, 0px); opacity: 1;">
+            <img alt="" role="presentation" src="https://a.tile.openstreetmap.fr/hot/12/3026/1810.png"
+              class="leaflet-tile leaflet-tile-loaded"
+              style="width: 256px; height: 256px; transform: translate3d(632px, -381px, 0px); opacity: 1;">
+            <img alt="" role="presentation" src="https://c.tile.openstreetmap.fr/hot/12/3022/1813.png"
+              class="leaflet-tile leaflet-tile-loaded"
+              style="width: 256px; height: 256px; transform: translate3d(-392px, 387px, 0px); opacity: 1;">
+            <img alt="" role="presentation" src="https://a.tile.openstreetmap.fr/hot/12/3026/1813.png"
+              class="leaflet-tile leaflet-tile-loaded"
+              style="width: 256px; height: 256px; transform: translate3d(632px, 387px, 0px); opacity: 1;">
+          </div>
+        </div>
+      </div>
+      <div class="leaflet-pane leaflet-shadow-pane"></div>
+      <div class="leaflet-pane leaflet-overlay-pane"></div>
+      <div class="leaflet-pane leaflet-marker-pane"></div>
+      <div class="leaflet-pane leaflet-tooltip-pane"></div>
+      <div class="leaflet-pane leaflet-popup-pane"></div>
+      <div class="leaflet-proxy leaflet-zoom-animated"
+        style="transform: translate3d(774270px, 463895px, 0px) scale(2048);"></div>
+    </div>
+    <div class="leaflet-control-container">
+      <div class="leaflet-top leaflet-left">
+        <div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in" href="#"
+            title="Zoom in" role="button" aria-label="Zoom in">+</a><a class="leaflet-control-zoom-out" href="#"
+            title="Zoom out" role="button" aria-label="Zoom out">−</a></div>
+      </div>
+      <div class="leaflet-top leaflet-right"></div>
+      <div class="leaflet-bottom leaflet-left"></div>
+      <div class="leaflet-bottom leaflet-right">
+        <div class="leaflet-control-attribution leaflet-control"><a href="https://leafletjs.com"
+            title="A JS library for interactive maps">Leaflet</a> | © <a
+            href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors</div>
+      </div>
+    </div>
+  </div>></div>
+</body>
+</html>
